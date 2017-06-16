@@ -5,5 +5,19 @@
   <%= @event.title %>
 </p>
 
+<div>
+  <%= @event.creator.name %>
+</div>
+
+<div>
+  <% @event.users.each do |user| %>
+    <p>
+      <%= user.name %>
+    </p>
+  <% end %>
+</div>
+
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+<%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post %>
