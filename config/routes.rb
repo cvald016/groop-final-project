@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  # get 'auth/:provider/callback', to: 'sessions#create'
+  # get 'auth/failure', to: redirect('/')
+  # get 'signout', to: 'sessions#destroy', as: 'signout'
+
+  get 'auth/facebook', as: "login"
+  get 'auth/facebook/callback', to: 'sessions#create'
+  get 'logout'   => 'sessions#destroy', as: "logout"
+
+
+  resources :sessions, only: [:create, :destroy]	
+
+
+
+  root 'home#index'
+
   resources :photos
   resources :user_events
   resources :events

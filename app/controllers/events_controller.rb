@@ -14,7 +14,7 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new(creator: User.find(1))
+    @event = Event.new
   end
 
   # GET /events/1/edit
