@@ -6,13 +6,13 @@
 </p>
 
 <div>
-  <%= @event.creator.name %>
+  <%= @event.creator.full_name %>
 </div>
 
 <div>
   <% @event.users.each do |user| %>
     <p>
-      <%= user.name %>
+      <%= user.full_name %>
     </p>
   <% end %>
 </div>
