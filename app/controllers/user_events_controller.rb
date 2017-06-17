@@ -1,5 +1,8 @@
 class UserEventsController < ApplicationController
   before_action :set_user_event, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
+  before_action :no_access
+
 
   # GET /user_events
   # GET /user_events.json
@@ -70,6 +73,10 @@ class UserEventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_event_params
       params.require(:user_event).permit(:user_id, :event_id)
+    end
+
+    def no_access
+      redirect_to root_url
     end
 
 end
