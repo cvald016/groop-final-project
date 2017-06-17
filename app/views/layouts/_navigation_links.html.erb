@@ -1,0 +1,7 @@
+<%# add navigation links to this file %>
+<li class='nav-item'><%= link_to 'About', page_path('about'), class: 'nav-link' %>ggggggg</li>
+<% if current_user %>
+  <a class="btn btn-lg btn-primary" href="/logout" role="button">Log Out</a>
+<% else %>
+  <a class="btn btn-lg btn-primary" href="/auth/facebook" role="button">Log In With Facebook</a>
+<% end %>
