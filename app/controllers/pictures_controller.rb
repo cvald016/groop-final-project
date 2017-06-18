@@ -11,7 +11,7 @@ class PicturesController < ApplicationController
       @picture = Picture.new(picture_params)
 
       if @picture.save
-         redirect_to picture_path, notice: "The resume #{@picture.name} has been uploaded."
+         redirect_to picture_path, notice: "The picture #{@picture.name} has been uploaded."
       else
          render "new"
       end
@@ -21,7 +21,7 @@ class PicturesController < ApplicationController
    def destroy
       @picture = Picture.find(params[:id])
       @picture.destroy
-      redirect_to picture_path, notice:  "The resume #{@picture.name} has been deleted."
+      redirect_to picture_path, notice:  "The picture #{@picture.name} has been deleted."
    end
 
    private
