@@ -16,7 +16,7 @@
 
   <div class="tab-content" id="myTabContent">
     <div role="tabpanel" class="tab-pane fade active show" id="home" aria-labelledby="home-tab" aria-expanded="true">
-      <% @events.each do |event| %>
+      <% @all_attending_events.each do |all_attending_event| %>
         <div class="container">
           <div class="row">
             <div class="col-12 color-row" >
@@ -24,10 +24,10 @@
               <div class="container test-border">
                 <div class="row evt-feed-img test-border"> 
                     Event IMG ERB Here
-                    <p><%= event.title %></p>
-                    <p><%= event.date %></p>
-                    <p><%= event.location %></p>
-                    <p><%= event.creator.full_name %></p>
+                    <p><%= all_attending_event.title %></p>
+                    <p><%= all_attending_event.date %></p>
+                    <p><%= all_attending_event.location %></p>
+                    <p><%= all_attending_event.creator.full_name %></p>
                 </div>
               </div>
 

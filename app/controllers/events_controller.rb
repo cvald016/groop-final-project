@@ -6,8 +6,20 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+
     @past_events = Event.where("date < :current_date",
       {current_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
+
+    @my_events = Event.where("creator_id == :current_user AND date >= :current_date", 
+      {current_user: current_user.id, current_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
+    
+    # For the current_event_date condition, we can also user Time.now.utc_beginning_of_day
+    @attending_events = UserEvent.joins(:event).where("user_id == :current_user AND events.date >= :current_event_date",
+      {current_user: current_user.id, current_event_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
+
+    @all_attending_events = []
+    @all_attending_events << @my_events + @attending_events
+
   end
 
   # GET /events/1
