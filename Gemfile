@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'carrierwave'
+gem 'bootstrap-sass'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'hirb'
