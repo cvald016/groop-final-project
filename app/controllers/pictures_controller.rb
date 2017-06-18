@@ -11,7 +11,7 @@ class PicturesController < ApplicationController
       @picture = Picture.new(picture_params)
 
       if @picture.save
-         redirect_to picture_path, notice: "The picture #{@picture.name} has been uploaded."
+         redirect_to pictures_path, notice: "The picture #{@picture.name} has been uploaded."
       else
          render "new"
       end
