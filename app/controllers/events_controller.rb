@@ -7,18 +7,28 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
+    # Past Events that you and your friends held.
     @past_events = Event.where("date < :current_date",
       {current_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
 
+    # Current Events that you created
     @my_events = Event.where("creator_id == :current_user AND date >= :current_date", 
       {current_user: current_user.id, current_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
     
     # For the current_event_date condition, we can also user Time.now.utc_beginning_of_day
+    # Current Events that you are attending
     @attending_events = UserEvent.joins(:event).where("user_id == :current_user AND events.date >= :current_event_date",
       {current_user: current_user.id, current_event_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
 
-    @all_attending_events = []
-    @all_attending_events << @my_events + @attending_events
+    # All the current events you are involved in
+    @all_attending_events = @my_events + user_events(@attending_events)
+
+    # Events not created by you
+    @friends_events = Event.where.not("creator_id == :current_user AND date >= :current_date", 
+      {current_user: current_user.id, current_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
+
+
+
 
   end
 

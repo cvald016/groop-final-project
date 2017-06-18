@@ -4,4 +4,6 @@ class UserEvent < ApplicationRecord
 
   # validates :user_id, uniqueness: true
 
+ 
+
 end
