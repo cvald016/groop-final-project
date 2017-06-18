@@ -10,6 +10,8 @@ ruby '2.3.4'
 # For notifications on event changes
 gem 'twilio-ruby'
 # For facebook login
+gem 'carrierwave'
+gem 'bootstrap-sass'
 gem 'omniauth'
 gem 'omniauth-facebook'
 # To read records in the console in table form
