@@ -1,7 +1,7 @@
 class UserEventsController < ApplicationController
   before_action :set_user_event, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
-  before_action :no_access
+  # before_action :no_access
 
 
   # GET /user_events
@@ -31,7 +31,7 @@ class UserEventsController < ApplicationController
 
     respond_to do |format|
       if @user_event.save
-        format.html { redirect_to @user_event, notice: 'User event was successfully created.' }
+        format.html { redirect_to 'events/show', notice: 'You have joined this event!' }
         format.json { render :show, status: :created, location: @user_event }
       else
         format.html { render :new }

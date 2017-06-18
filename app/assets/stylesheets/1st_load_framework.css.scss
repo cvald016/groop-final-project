@@ -43,3 +43,19 @@ section {
   @extend .row;
   margin-top: 20px;
 }
+
+.test-border {
+  border: 1px solid black;
+}
+
+.evt-feed-img {
+  height: 157px;
+  background-color: red;
+}
+
+.color-row {
+  background-color: yellow;
+  height: 189px;
+  width: 100%;
+  margin-bottom: 10px;
+}

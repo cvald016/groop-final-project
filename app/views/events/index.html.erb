@@ -1,27 +1,131 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
+<div class="bd-example bd-example-tabs" role="tabpanel">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Attending</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="friends-upcoming-tab" data-toggle="tab" href="#friends-upcoming" role="tab" aria-controls="friends-upcoming" aria-expanded="false">Friends Upcoming</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="History-tab" data-toggle="tab" href="#History" role="tab" aria-controls="History" aria-expanded="false">History</a>
+    </li>
+   
+  </ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="tab-content" id="myTabContent">
+    <div role="tabpanel" class="tab-pane fade active show" id="home" aria-labelledby="home-tab" aria-expanded="true">
+      <% @events.each do |event| %>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 color-row" >
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+              <div class="container test-border">
+                <div class="row evt-feed-img test-border"> 
+                    Event IMG ERB Here
+                    <p><%= event.title %></p>
+                    <p><%= event.date %></p>
+                    <p><%= event.location %></p>
+                    <p><%= event.creator.full_name %></p>
+                </div>
+              </div>
 
-<br>
+              <div class="container test-border">
+                <div class="row test-border"> 
+                    <div class="col-6 test-border">
+                      Message
+                    </div>
+                    <div class="col-6 test-border">
+                      Join
+                    </div>
+                  </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+      
+    <div class="tab-pane fade" id="friends-upcoming-tab" role="tabpanel" aria-labelledby="friends-upcoming-tab" aria-expanded="false">
+      <% @events.each do |event| %>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12 color-row" >
+
+            <div class="container test-border">
+              <div class="row evt-feed-img test-border"> 
+                  Event IMG ERB Here
+                  <p><%= event.title %></p>
+                  <p><%= event.date %></p>
+                  <p><%= event.location %></p>
+                  <p><%= event.creator.full_name %></p>
+              </div>
+            </div>
+
+            <div class="container test-border">
+              <div class="row test-border"> 
+                  <div class="col-6 test-border">
+                    Message
+                  </div>
+                  <div class="col-6 test-border">
+                    Join
+                  </div>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <% end %>
+
+    </div>
+
+    <div class="tab-pane fade" id="History" role="tabpanel" aria-labelledby="History-tab" aria-expanded="false">
+      <% @past_events.each do |past_event| %>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12 color-row" >
+
+            <div class="container test-border">
+              <div class="row evt-feed-img test-border"> 
+                  Event IMG ERB Here
+                  <p><%= past_event.title %></p>
+                  <p><%= past_event.date %></p>
+                  <p><%= past_event.location %></p>
+                  <p><%= past_event.creator.full_name %></p>
+              </div>
+            </div>
+
+            <div class="container test-border">
+              <div class="row test-border"> 
+                  <div class="col-6 test-border">
+                    Message
+                  </div>
+                  <div class="col-6 test-border">
+                    Join
+                  </div>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <% end %>
+
+    </div>
+   
+   
+  
+  </div>
+</div>
+
+
 
 <%= link_to 'New Event', new_event_path %>

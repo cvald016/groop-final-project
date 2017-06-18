@@ -18,9 +18,10 @@
 
   <div class="field">
     <%= form.label :date %>
-    <%= form.text_field :date %>
-  </div>
+    <%= form.datetime_local_field :date, :value => "#{@current_date}" %>
 
+
+  </div>
   <div class="field">
     <%= form.label :location %>
     <%= form.text_field :location %>
