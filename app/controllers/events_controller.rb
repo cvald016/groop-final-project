@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  # before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:index, :show, :edit, :update]
 
   # GET /events
@@ -29,6 +29,7 @@ class EventsController < ApplicationController
     @event.creator_id = current_user.id
     respond_to do |format|
       if @event.save!
+        p @event.id, "it worked!!"
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else

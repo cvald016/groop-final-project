@@ -1,7 +1,8 @@
 class UserEventsController < ApplicationController
   before_action :set_user_event, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
-  before_action :no_access
+  # before_action :no_access
+  # after_action :create_message, only: [:create]
 
 
   # GET /user_events
@@ -24,11 +25,14 @@ class UserEventsController < ApplicationController
   def edit
   end
 
+
   # POST /user_events
   # POST /user_events.json
+
+
   def create
     @user_event = UserEvent.new(user_event_params)
-
+    MessageSender.send_message(message)
     respond_to do |format|
       if @user_event.save
         format.html { redirect_to @user_event, notice: 'User event was successfully created.' }
@@ -38,6 +42,7 @@ class UserEventsController < ApplicationController
         format.json { render json: @user_event.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /user_events/1
@@ -66,6 +71,10 @@ class UserEventsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def message
+      "Testing Twilio Feature!"
+    end
+
     def set_user_event
       @user_event = UserEvent.find(params[:id])
     end
