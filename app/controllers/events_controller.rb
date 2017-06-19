@@ -23,12 +23,19 @@ class EventsController < ApplicationController
     # All the current events you are involved in
     @all_attending_events = @my_events + user_events(@attending_events)
 
+    # Events made by your friends, without attendees or you
+    # I need to add something like: user_events.user_id != :current_user"
+    # Need to include joins(:user_events)
+    # @friend_madeevents = Event.where("creator_id != :current_user AND date >= :current_date", 
+    #   {current_user: current_user.id, current_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
+
     # Events you are not attending and you didn't create
     @friends_userevents = UserEvent.joins(:event).where("user_id != :current_user AND date >= :current_date AND events.creator_id != :current_user", 
       {current_user: current_user.id, current_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
 
-    # Changes your friends' groops to their events!
-    @friends_events = user_events(@friends_userevents)
+    # All events made by your friends and involving your friends that you are not in
+    # @friend_madeevents +
+    @friends_events =  user_events(@friends_userevents)
 
   end
 
