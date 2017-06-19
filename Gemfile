@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 ruby '2.3.4'
 # For notifications on event changes
 gem 'twilio-ruby'
