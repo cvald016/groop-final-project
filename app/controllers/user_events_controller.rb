@@ -1,13 +1,13 @@
 class UserEventsController < ApplicationController
   before_action :set_user_event, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
-  before_action :no_access
 
 
   # GET /user_events
   # GET /user_events.json
   def index
     @user_events = UserEvent.all
+    redirect_to events_url
   end
 
   # GET /user_events/1
@@ -31,7 +31,7 @@ class UserEventsController < ApplicationController
 
     respond_to do |format|
       if @user_event.save
-        format.html { redirect_to @user_event, notice: 'User event was successfully created.' }
+        format.html { redirect_to @user_event.event, notice: 'You have joined this groop!' }
         format.json { render :show, status: :created, location: @user_event }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class UserEventsController < ApplicationController
   def update
     respond_to do |format|
       if @user_event.update(user_event_params)
-        format.html { redirect_to @user_event, notice: 'User event was successfully updated.' }
+        format.html { redirect_to @user_event.event, notice: 'User event was successfully updated.' }
         format.json { render :show, status: :ok, location: @user_event }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class UserEventsController < ApplicationController
   def destroy
     @user_event.destroy
     respond_to do |format|
-      format.html { redirect_to user_events_url, notice: 'User event was successfully destroyed.' }
+      format.html { redirect_to events_url, notice: 'You have left this groop!' }
       format.json { head :no_content }
     end
   end
@@ -75,8 +75,6 @@ class UserEventsController < ApplicationController
       params.require(:user_event).permit(:user_id, :event_id)
     end
 
-    def no_access
-      redirect_to root_url
-    end
-
 end
+
+

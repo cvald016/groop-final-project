@@ -1,11 +1,49 @@
 class EventsController < ApplicationController
-  # before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:index, :show, :edit, :update]
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
+
+    # Past Events that you and your friends held
+    @past_events = @events.select do |event|
+      event.date < DateTime.now
+    end
+
+   
+    # Current Events that you created
+    @my_events = @events.select do |event|
+      event.date >= DateTime.now && event.creator_id == current_user.id
+    end
+    
+    # Alternate way of writing the above query
+    # @my_events = Event.where("creator_id == :current_user AND date >= :current_date", 
+    #   {current_user: current_user.id, current_date: DateTime.now})
+
+    # For the current_event_date condition, we can also user Time.now.utc_beginning_of_day
+    # Current Events that you are attending
+    @attending_events = UserEvent.joins(:event).where("user_id == :current_user AND events.date >= :current_event_date",
+      {current_user: current_user.id, current_event_date: DateTime.now})
+
+    # All the current events you are involved in
+    @all_attending_events = @my_events + user_events(@attending_events)
+
+    # Friend events show all events not created by you, but you may be attending
+    @friend_made_events = Event.where("creator_id != :current_user AND date >= :current_date",
+      {current_user: current_user.id, current_date: DateTime.now})
+
+     # Events made by your friends, where you are not attending, and there are no other attendees
+     @friend_events = @friend_made_events - user_events(@attending_events)
+
+    # Groups you are not involved with and you didn't create
+    @friends_user_events = UserEvent.joins(:event).where("user_id != :current_user AND date >= :current_date AND events.creator_id != :current_user", 
+      {current_user: current_user.id, current_date: DateTime.now})
+
+    # All events made by your friends and involving your friends that you are not in
+    @all_friends_events =  (@friend_events + user_events(@friends_user_events)) - user_events(@attending_events)
+
   end
 
   # GET /events/1
@@ -16,8 +54,9 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @current_date = DateTime.now.strftime("%Y-%m-%dT%H:%M")
   end
-
+  
   # GET /events/1/edit
   def edit
   end
@@ -72,4 +111,5 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:title, :date, :location, :description)
     end
+
 end
