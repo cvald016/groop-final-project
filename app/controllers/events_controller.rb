@@ -31,18 +31,18 @@ class EventsController < ApplicationController
     @all_attending_events = @my_events + user_events(@attending_events)
 
     # Friend events show all events not created by you, but you may be attending
-    @friend_madeevents = Event.where("creator_id != :current_user AND date >= :current_date",
+    @friend_made_events = Event.where("creator_id != :current_user AND date >= :current_date",
       {current_user: current_user.id, current_date: DateTime.now})
 
      # Events made by your friends, where you are not attending, and there are no other attendees
-     @friend_events = @friend_madeevents - user_events(@attending_events)
+     @friend_events = @friend_made_events - user_events(@attending_events)
 
     # Groups you are not involved with and you didn't create
-    @friends_userevents = UserEvent.joins(:event).where("user_id != :current_user AND date >= :current_date AND events.creator_id != :current_user", 
+    @friends_user_events = UserEvent.joins(:event).where("user_id != :current_user AND date >= :current_date AND events.creator_id != :current_user", 
       {current_user: current_user.id, current_date: DateTime.now})
 
     # All events made by your friends and involving your friends that you are not in
-    @all_friends_events =  @friend_events + user_events(@friends_userevents)
+    @all_friends_events =  (@friend_events + user_events(@friends_user_events)) - user_events(@attending_events)
 
   end
 
