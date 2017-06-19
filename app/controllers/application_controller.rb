@@ -12,5 +12,8 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+  def time_formatter(date)
+  	date.strftime("%A,%B %d, %Y - %I:%M %p")
+  end
   
 end

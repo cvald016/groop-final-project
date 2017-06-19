@@ -6,7 +6,7 @@
       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Attending</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="friends-upcoming-tab" data-toggle="tab" href="#friends-upcoming" role="tab" aria-controls="friends-upcoming" aria-expanded="false">Friends Upcoming</a>
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-expanded="false">Friends Upcoming</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="History-tab" data-toggle="tab" href="#History" role="tab" aria-controls="History" aria-expanded="false">History</a>
@@ -49,8 +49,8 @@
     </div>
 
       
-    <div class="tab-pane fade" id="friends-upcoming-tab" role="tabpanel" aria-labelledby="friends-upcoming-tab" aria-expanded="false">
-      <% @events.each do |event| %>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
+      <% @friends_events.each do |friends_event| %>
 
       <div class="container">
         <div class="row">
@@ -59,10 +59,10 @@
             <div class="container test-border">
               <div class="row evt-feed-img test-border"> 
                   Event IMG ERB Here
-                  <p><%= event.title %></p>
-                  <p><%= event.date %></p>
-                  <p><%= event.location %></p>
-                  <p><%= event.creator.full_name %></p>
+                  <p><%= friends_event.title %></p>
+                  <p><%= friends_event.date %></p>
+                  <p><%= friends_event.location %></p>
+                  <p><%= friends_event.creator.full_name %></p>
               </div>
             </div>
 
@@ -125,7 +125,3 @@
   
   </div>
 </div>
-
-
-
-<%= link_to 'New Event', new_event_path %>
