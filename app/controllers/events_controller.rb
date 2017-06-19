@@ -7,35 +7,42 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
-    # Past Events that you and your friends held.
-    @past_events = Event.where("date < :current_date",
-      {current_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
+    # Past Events that you and your friends held
+    @past_events = @events.select do |event|
+      event.date < DateTime.now
+    end
 
+   
     # Current Events that you created
-    @my_events = Event.where("creator_id == :current_user AND date >= :current_date", 
-      {current_user: current_user.id, current_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
+    @my_events = @events.select do |event|
+      event.date >= DateTime.now && event.creator_id == current_user.id
+    end
     
+    # Alternate way of writing the above query
+    # @my_events = Event.where("creator_id == :current_user AND date >= :current_date", 
+    #   {current_user: current_user.id, current_date: DateTime.now})
+
     # For the current_event_date condition, we can also user Time.now.utc_beginning_of_day
     # Current Events that you are attending
     @attending_events = UserEvent.joins(:event).where("user_id == :current_user AND events.date >= :current_event_date",
-      {current_user: current_user.id, current_event_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
+      {current_user: current_user.id, current_event_date: DateTime.now})
 
     # All the current events you are involved in
     @all_attending_events = @my_events + user_events(@attending_events)
 
-    # Events made by your friends, without attendees or you
-    # I need to add something like: user_events.user_id != :current_user"
-    # Need to include joins(:user_events)
-    # @friend_madeevents = Event.where("creator_id != :current_user AND date >= :current_date", 
-    #   {current_user: current_user.id, current_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
+    # Friend events show all events not created by you, but you may be attending
+    @friend_madeevents = Event.where("creator_id != :current_user AND date >= :current_date",
+      {current_user: current_user.id, current_date: DateTime.now})
 
-    # Events you are not attending and you didn't create
+     # Events made by your friends, where you are not attending, and there are no other attendees
+     @friend_events = @friend_madeevents - user_events(@attending_events)
+
+    # Groups you are not involved with and you didn't create
     @friends_userevents = UserEvent.joins(:event).where("user_id != :current_user AND date >= :current_date AND events.creator_id != :current_user", 
-      {current_user: current_user.id, current_date: DateTime.now.strftime("%Y-%m-%dT%H:%M")})
+      {current_user: current_user.id, current_date: DateTime.now})
 
     # All events made by your friends and involving your friends that you are not in
-    # @friend_madeevents +
-    @friends_events =  user_events(@friends_userevents)
+    @all_friends_events =  @friend_events + user_events(@friends_userevents)
 
   end
 
@@ -104,4 +111,5 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:title, :date, :location, :description)
     end
+
 end
