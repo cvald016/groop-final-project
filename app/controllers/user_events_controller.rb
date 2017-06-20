@@ -73,7 +73,7 @@ class UserEventsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def message
-      "Testing Twilio Feature"
+      "Great news! #{current_user.full_name} joined your event, #{Event.find(user_event_params[:event_id]).title}!"
     end
 
     def set_user_event
