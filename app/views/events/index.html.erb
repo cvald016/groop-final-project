@@ -19,9 +19,9 @@
           <div class="row">
             <div class="col-12 color-row" >
 
-              <div class="container test-border">
+              <div class="container">
                 <%= link_to event_path(all_attending_event.id) do %>
-                  <div class="row evt-feed-img test-border">
+                  <div class="row evt-feed-img">
                       Event IMG
                       <p><%= all_attending_event.title %></p>
                       <p><%= time_formatter(all_attending_event.date) %></p>
@@ -45,9 +45,9 @@
         <div class="row">
           <div class="col-12 color-row" >
 
-            <div class="container test-border">
+            <div class="container">
               <%= link_to event_path(friend_event.id) do %>
-                <div class="row evt-feed-img test-border">
+                <div class="row friend-evt-feed-img">
                     Event IMG
                     <p><%= friend_event.title %></p>
                     <p><%= time_formatter(friend_event.date) %></p>
@@ -57,9 +57,9 @@
                <% end %>
             </div>
 
-            <div class="container test-border">
+            <div class="container">
               <div class="row test-border">
-                <div class="col-12 test-border">
+                <div class="col-12">
                     <%= link_to 'Join', user_events_path(:user_event => {event_id: "#{friend_event.id}", user_id: current_user.id}), method: :post %>
                 </div>
               </div>
@@ -80,9 +80,9 @@
         <div class="row">
           <div class="col-12 color-row" >
 
-            <div class="container test-border">
+            <div class="container">
               <%= link_to event_path(past_event.id) do %>
-                <div class="row evt-feed-img test-border">
+                <div class="row evt-feed-img">
                     Event IMG
                     <p><%= past_event.title %></p>
                     <p><%= time_formatter(past_event.date) %></p>
