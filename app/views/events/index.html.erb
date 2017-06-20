@@ -48,8 +48,8 @@
 
 
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
-      <% @all_friends_events.sort_by(&:date).reverse.each do |friends_event| %>
 
+      <% @friend_events.sort_by(&:date).reverse.each do |friend_event| %>
       <div class="container">
         <div class="row">
           <div class="col-12 color-row" >
@@ -57,10 +57,11 @@
             <div class="container test-border">
               <div class="row evt-feed-img test-border">
                   Event IMG ERB Here
-                  <p><%= friends_event.title %></p>
-                  <p><%= time_formatter(friends_event.date) %></p>
-                  <p><%= friends_event.location %></p>
-                  <p><%= friends_event.creator.full_name %></p>
+
+                  <p><%= friend_event.title %></p>
+                  <p><%= time_formatter(friend_event.date) %></p>
+                  <p><%= friend_event.location %></p>
+                  <p><%= friend_event.creator.full_name %></p>
               </div>
             </div>
 
