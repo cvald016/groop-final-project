@@ -5,9 +5,16 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
+ruby '2.3.4'
+# For notifications on event changes
+gem 'twilio-ruby'
+# For facebook login
 gem 'omniauth'
 gem 'omniauth-facebook'
+# To read records in the console in table form
 gem 'hirb'
+# To create ERD diagrams
 gem 'rails-erd'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
