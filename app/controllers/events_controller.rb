@@ -16,7 +16,7 @@ class EventsController < ApplicationController
     @my_events = @events.select do |event|
       event.date >= DateTime.now && event.creator_id == current_user.id
     end
-    
+
     # Current Events that you are attending
     @attending_events = UserEvent.joins(:event).where("user_id == :current_user AND events.date >= :current_event_date",
       {current_user: current_user.id, current_event_date: DateTime.now})
@@ -43,7 +43,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @current_date = DateTime.now.strftime("%Y-%m-%dT%H:%M")
   end
-  
+
   # GET /events/1/edit
   def edit
   end
@@ -51,15 +51,21 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = current_user.events.build(event_params)
-    @event.creator_id = current_user.id
-    respond_to do |format|
-      if @event.save!
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+    if event_params[:date] < DateTime.now
+      redirect_to events_path, notice: 'Unable to make an event in the past.'
+      return
+    else
+      @event = current_user.events.build(event_params)
+      @event.creator_id = current_user.id
+
+      respond_to do |format|
+        if @event.save!
+          format.html { redirect_to @event, notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }
+        else
+          render 'new'
+          # format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
