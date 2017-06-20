@@ -32,6 +32,7 @@ class UserEventsController < ApplicationController
       return
     else
       @user_event = UserEvent.new(user_event_params)
+      MessageSender.send_message(message)
     end
 
     respond_to do |format|
@@ -71,6 +72,10 @@ class UserEventsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def message
+      "Great news! #{current_user.full_name} joined your event, #{Event.find(user_event_params[:event_id]).title}!"
+    end
+
     def set_user_event
       @user_event = UserEvent.find(params[:id])
     end

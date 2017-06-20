@@ -2,15 +2,15 @@
 
 expiration_date = Time.now.utc + 20.days
 
-u1 = User.create(full_name: "Kevin Wong", email: "kwong@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
-u2 = User.create(full_name: "Christopher Valdemoro", email: "chrisv@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
-u3 = User.create(full_name: "Enrique Gollas", email: "egollas@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
-u4 = User.create(full_name: "Annette Medina", email: "annette@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
-u5 = User.create(full_name: "Jonas Erthal", email: "jerthal@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
-u6 = User.create(full_name: "Christina Medeiros", email: "christina@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
-u7 = User.create(full_name: "Alfonso Estremadoyro", email: "alfonsoe@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
-u8 = User.create(full_name: "Elsie Giraudy", email: "egiraudy@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
-u9 = User.create(full_name: "Steph Ricardo", created_at: "2017-06-19 20:11:50", updated_at: "2017-06-19 20:11:50", uid: "10158821515595627", oauth_token: "EAAOW30xR3YcBALxdsokUVQaq3pmZALdpWjefksX4PXRUlZBCOhF2ysm4fKxdLyzfKOuJ5FDz1tAe7VYZCA14CZB1TsroGrfcSjrTbPEusu0Rn2cxGmZAwMybNW9uhUBsgXsNGMYrkZCZBUcJrgEKL5ZBvSijkj1v16ZBuLCfzUwv4TwZDZD", oauth_expires_at: "2017-08-18 20:11:49", provider: "facebook", email: "s.ricardo1@umiami.edu" ) 
+u1 = User.create(full_name: "Kevin Wong",phone_number: "3058785704" ,email: "kwong@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
+u2 = User.create(full_name: "Christopher Valdemoro",phone_number: "3058785704" ,email: "chrisv@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
+u3 = User.create(full_name: "Enrique Gollas",phone_number: "3058785704" ,email: "egollas@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
+u4 = User.create(full_name: "Annette Medina",phone_number: "3058785704" ,email: "annette@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
+u5 = User.create(full_name: "Jonas Erthal",phone_number: "3058785704" ,email: "jerthal@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
+u6 = User.create(full_name: "Christina Medeiros",phone_number: "3058785704" ,email: "christina@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
+u7 = User.create(full_name: "Alfonso Estremadoyro",phone_number: "3058785704" ,email: "alfonsoe@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
+u8 = User.create(full_name: "Elsie Giraudy",phone_number: "3058785704" ,email: "egiraudy@gmail.com", uid: "id123", oauth_token:"faketoken1", oauth_expires_at: expiration_date, provider: "facebook")
+u9 = User.create(full_name: "Steph Ricardo",phone_number: "3058785704" ,created_at: "2017-06-19 20:11:50", updated_at: "2017-06-19 20:11:50", uid: "10158821515595627", oauth_token: "EAAOW30xR3YcBALxdsokUVQaq3pmZALdpWjefksX4PXRUlZBCOhF2ysm4fKxdLyzfKOuJ5FDz1tAe7VYZCA14CZB1TsroGrfcSjrTbPEusu0Rn2cxGmZAwMybNW9uhUBsgXsNGMYrkZCZBUcJrgEKL5ZBvSijkj1v16ZBuLCfzUwv4TwZDZD", oauth_expires_at: "2017-08-18 20:11:49", provider: "facebook", email: "s.ricardo1@umiami.edu" )
 
 e1 = Event.create(title: "Burgers" , creator_id: 1, date: Time.now + 1.weeks, location: "Wynwood" , description: "Grab some burgers after class.")
 e2 = Event.create(title: "BBQ at Chris'" , creator_id: 2, date: Time.now + 1.weeks, location: "Chris' House" , description: "Lets grill and chill.")
@@ -63,12 +63,3 @@ UserEvent.create(event_id: 9, user_id: 7)
 UserEvent.create(event_id: 10, user_id: 9)
 UserEvent.create(event_id: 11, user_id: 2)
 UserEvent.create(event_id: 11, user_id: 3)
-
-
-
-
-
-
-
-
-
