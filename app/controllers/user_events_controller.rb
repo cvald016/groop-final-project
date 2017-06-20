@@ -27,7 +27,12 @@ class UserEventsController < ApplicationController
   # POST /user_events
   # POST /user_events.json
   def create
-    @user_event = UserEvent.new(user_event_params)
+    if (Event.find_by(id: user_event_params[:event_id]).creator_id == current_user.id) || (Event.find(user_event_params[:event_id]).user_events.where(user_id: current_user.id).any?)
+      redirect_to event_path(user_event_params[:event_id]), notice: 'You are already in this groop!'
+      return
+    else
+      @user_event = UserEvent.new(user_event_params)
+    end
 
     respond_to do |format|
       if @user_event.save
@@ -76,5 +81,3 @@ class UserEventsController < ApplicationController
     end
 
 end
-
-

@@ -12,14 +12,14 @@ class EventsController < ApplicationController
       event.date < DateTime.now
     end
 
-   
+
     # Current Events that you created
     @my_events = @events.select do |event|
       event.date >= DateTime.now && event.creator_id == current_user.id
     end
-    
+
     # Alternate way of writing the above query
-    # @my_events = Event.where("creator_id == :current_user AND date >= :current_date", 
+    # @my_events = Event.where("creator_id == :current_user AND date >= :current_date",
     #   {current_user: current_user.id, current_date: DateTime.now})
 
     # For the current_event_date condition, we can also user Time.now.utc_beginning_of_day
@@ -38,7 +38,7 @@ class EventsController < ApplicationController
      @friend_events = @friend_made_events - user_events(@attending_events)
 
     # Groups you are not involved with and you didn't create
-    @friends_user_events = UserEvent.joins(:event).where("user_id != :current_user AND date >= :current_date AND events.creator_id != :current_user", 
+    @friends_user_events = UserEvent.joins(:event).where("user_id != :current_user AND date >= :current_date AND events.creator_id != :current_user",
       {current_user: current_user.id, current_date: DateTime.now})
 
     # All events made by your friends and involving your friends that you are not in
@@ -56,7 +56,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @current_date = DateTime.now.strftime("%Y-%m-%dT%H:%M")
   end
-  
+
   # GET /events/1/edit
   def edit
   end
@@ -64,15 +64,21 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = current_user.events.build(event_params)
-    @event.creator_id = current_user.id
-    respond_to do |format|
-      if @event.save!
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+    if event_params[:date] < DateTime.now
+      redirect_to events_path, notice: 'Unable to make an event in the past.'
+      return
+    else
+      @event = current_user.events.build(event_params)
+      @event.creator_id = current_user.id
+
+      respond_to do |format|
+        if @event.save!
+          format.html { redirect_to @event, notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }
+        else
+          render 'new'
+          # format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
