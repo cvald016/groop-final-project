@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+   export TWILIO_ACCOUNT_SID=Your Twilio Account SID
+   export TWILIO_AUTH_TOKEN=Your Twilio Auth Token
