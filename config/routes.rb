@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resources :photos
   resources :user_events
-  resources :events do
-    resources :pictures, only: [:index, :new, :create, :destroy]
-  end
+  resources :events
+  resources :pictures, only: [:index, :new, :create, :destroy]
+
   resources :users
     # root "pictures#index"
     root 'home#index'

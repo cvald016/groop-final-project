@@ -32,7 +32,7 @@ class UserEventsController < ApplicationController
 
   def create
     @user_event = UserEvent.new(user_event_params)
-    MessageSender.send_message(message)
+    
     respond_to do |format|
       if @user_event.save
         format.html { redirect_to @user_event, notice: 'User event was successfully created.' }
