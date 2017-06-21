@@ -5,10 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+<<<<<<< HEAD
 ruby '2.3.4'
 # For notifications on event changes
 gem 'twilio-ruby'
 # For facebook login
+=======
+gem 'twilio-ruby'
+>>>>>>> 7b03de17190e33b92fae4bdd7206ca0f00905f33
 gem 'carrierwave'
 gem 'bootstrap-sass'
 gem 'omniauth'
@@ -64,6 +68,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+<<<<<<< HEAD
+=======
+  # gem 'better_errors'
+>>>>>>> 7b03de17190e33b92fae4bdd7206ca0f00905f33
   gem 'hub', :require=>nil
   gem 'rails_layout'
 end

@@ -52,6 +52,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+<<<<<<< HEAD
     if event_params[:date] < DateTime.now
       redirect_to events_path, notice: 'Unable to make an event in the past.'
       return
@@ -67,6 +68,18 @@ class EventsController < ApplicationController
           render 'new'
           # format.json { render json: @event.errors, status: :unprocessable_entity }
         end
+=======
+    @event = current_user.events.build(event_params)
+    @event.creator_id = current_user.id
+    respond_to do |format|
+      if @event.save!
+        p @event.id, "it worked!!"
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.json { render :show, status: :created, location: @event }
+      else
+        format.html { render :new }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+>>>>>>> 7b03de17190e33b92fae4bdd7206ca0f00905f33
       end
     end
   end
