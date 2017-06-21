@@ -15,7 +15,7 @@ class PhotosController < ApplicationController
       @photo = Photo.new(photo_params)
 
       if @photo.save
-         redirect_to photos_path, notice: "The photo #{@photo.name} has been uploaded."
+         redirect_to event_path(Event.find(1))
       else
          render "new"
       end

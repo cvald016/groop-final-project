@@ -36,6 +36,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @photo = Photo.find(1)
   end
 
   # GET /events/new
