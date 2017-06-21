@@ -1,12 +1,6 @@
 class UserEventsController < ApplicationController
   before_action :set_user_event, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
-<<<<<<< HEAD
-=======
-  # before_action :no_access
-  # after_action :create_message, only: [:create]
-
->>>>>>> 7b03de17190e33b92fae4bdd7206ca0f00905f33
 
   # GET /user_events
   # GET /user_events.json
@@ -37,7 +31,6 @@ class UserEventsController < ApplicationController
 
 
   def create
-<<<<<<< HEAD
     if (Event.find_by(id: user_event_params[:event_id]).creator_id == current_user.id) || (Event.find(user_event_params[:event_id]).user_events.where(user_id: current_user.id).any?)
       redirect_to event_path(user_event_params[:event_id]), notice: 'You are already in this groop!'
       return
@@ -45,10 +38,7 @@ class UserEventsController < ApplicationController
       @user_event = UserEvent.new(user_event_params)
       MessageSender.send_message(message)
     end
-=======
-    @user_event = UserEvent.new(user_event_params)
-    
->>>>>>> 7b03de17190e33b92fae4bdd7206ca0f00905f33
+
     respond_to do |format|
       if @user_event.save
         format.html { redirect_to @user_event.event, notice: 'You have joined this groop!' }
@@ -88,11 +78,7 @@ class UserEventsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def message
-<<<<<<< HEAD
       "Great news! #{current_user.full_name} joined your event, #{Event.find(user_event_params[:event_id]).title}!"
-=======
-      "Testing Twilio Feature!"
->>>>>>> 7b03de17190e33b92fae4bdd7206ca0f00905f33
     end
 
     def set_user_event

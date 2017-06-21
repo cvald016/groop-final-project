@@ -1,17 +1,9 @@
-<% if !flash[:notice].blank? %>
-   <div class = "alert alert-info">
-      <%= flash[:notice] %>
-   </div>
-<% end %>
-
-<br />
-
-<%= link_to "New Picture", photos_new_path, class: "btn btn-primary" %>
+<%= link_to "New Picture", new_event_photo_path, class: "btn btn-primary" %>
 <br />
 <br />
 
 <table class = "table table-bordered table-striped">
-   <thead>.
+   <thead>
       <tr>
          <th>Name</th>
          <th>Download Link</th>

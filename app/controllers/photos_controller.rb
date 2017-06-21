@@ -1,25 +1,24 @@
 class PhotosController < ApplicationController
+  before_action :set_photo, only: [:show, :destroy]
+  before_action :find_event, only: [:index, :new, :create]
+
   def index
-      @photos = Photo.all
+      @photos = @event.photos
    end
 
    def show
-     @photo = Photo.last  #TODO might need to delete
    end
 
    def new
-      @photo = Photo.new
+      @photo = @event.photos.new
    end
 
    def create
-      @photo = Photo.new(photo_params)
+      @photo = @event.photos.new(photo_params)
 
       if @photo.save
-<<<<<<< HEAD
-         redirect_to event_path(Event.find(1))
-=======
-         redirect_to photos_path, notice: "The photo #{@photo.name} has been uploaded."
->>>>>>> 7b03de17190e33b92fae4bdd7206ca0f00905f33
+        #  redirect_to event_path(Event.find(1))
+         redirect_to event_path(@event.id), notice: "The photo #{@photo.name} has been uploaded."
       else
          render "new"
       end
@@ -27,13 +26,21 @@ class PhotosController < ApplicationController
    end
 
    def destroy
-      @photo = Photo.find(params[:id])
       @photo.destroy
       redirect_to photo_path, notice:  "The photo #{@photo.name} has been deleted."
    end
 
    private
-      def photo_params
-      params.require(:photo).permit(:name, :attachment)
-   end
+
+    def set_photo
+      @photo = Photo.find(params[:id])
+    end
+
+    def find_event
+      @event = Event.find(params["event_id"])
+    end
+
+    def photo_params
+      params.require(:photo).permit(:name, :attachment, :event_id)
+    end
 end
