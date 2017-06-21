@@ -11,11 +11,15 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 ActiveRecord::Schema.define(version: 20170618035547) do
 =======
 ActiveRecord::Schema.define(version: 20170619003623) do
 >>>>>>> added migration
+=======
+ActiveRecord::Schema.define(version: 20170620212727) do
+>>>>>>> removed twilio
 
   create_table "events", force: :cascade do |t|
     t.string "title"
