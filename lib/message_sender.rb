@@ -28,12 +28,12 @@ class MessageSender
     # Specify in E.164 format, e.g. "+16519998877"
     twilio_number = '+17867131642'
   end
-  
+
   def agent_number
     # The sales rep / agent's phone number
     agent_number = '+13058785704'
 
     # This does not work, would be nice to pull phone number from current user
     # agent_number = "+1#{current_user.phone_number}"
-
+  end
 end
