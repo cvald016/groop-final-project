@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170620212727) do
+ActiveRecord::Schema.define(version: 20170617015212) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "creator_id"
-    t.datetime "date"
+    t.string "date"
     t.string "location"
     t.text "description"
   end
@@ -30,20 +30,12 @@ ActiveRecord::Schema.define(version: 20170620212727) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.string "image"
-    t.string "title"
+    t.string "name"
+    t.string "attachment"
     t.integer "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_photos_on_event_id"
-  end
-
-  create_table "pictures", force: :cascade do |t|
-    t.string "name"
-    t.string "attachment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "event_id"
   end
 
   create_table "user_events", force: :cascade do |t|
@@ -65,7 +57,6 @@ ActiveRecord::Schema.define(version: 20170620212727) do
     t.string "picture_url"
     t.string "provider"
     t.string "email"
-    t.string "phone_number"
   end
 
 end

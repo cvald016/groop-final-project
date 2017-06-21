@@ -3,15 +3,14 @@ Rails.application.routes.draw do
   resources :photos
   resources :user_events
   resources :events
-  resources :pictures, only: [:index, :new, :create, :destroy]
 
   resources :users
-    # root "pictures#index"
+    # root "photos#index"
     root 'home#index'
-      get 'pictures/index' => 'pictures#index'
-      get 'pictures/new'
-      get 'pictures/create'
-      get 'pictures/destroy'
+      get 'photos/index' => 'photos#index'
+      get 'photos/new'
+      get 'photos/create'
+      get 'photos/destroy'
       # get 'auth/:provider/callback', to: 'sessions#create'
       # get 'auth/failure', to: redirect('/')
       # get 'signout', to: 'sessions#destroy', as: 'signout'
