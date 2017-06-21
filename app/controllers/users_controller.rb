@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:edit, :update, :destroy]
   before_action :logged_in_user, only: [:index, :show, :edit, :update]
 
 
@@ -12,11 +12,33 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
+    @events = Event.all
+
+    @my_events = @events.select do |event|
+      event.date >= DateTime.now && event.creator_id == @user.id
+    end
+
+    @my_attending_events = UserEvent.joins(:event).where("user_id == :user AND events.date >= :current_event_date",
+      {user: @user.id, current_event_date: DateTime.now})
+
+    # All the current events you are involved in
+    @all_current_events = @my_events + user_events(@my_attending_events)
+
+    @my_past_events = @events.select do |event|
+      event.date < DateTime.now && event.creator_id == @user.id
+    end
+
+    @past_attending_events = UserEvent.joins(:event).where("user_id == :user AND events.date < :current_event_date",
+      {user: @user.id, current_event_date: DateTime.now})
+
+    @all_past_events = @my_past_events + user_events(@past_attending_events)
   end
 
   # GET /users/new
   def new
-    @user = User.new
+    # @user = User.new
+    redirect_to events_path
   end
 
   # GET /users/1/edit

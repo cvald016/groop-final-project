@@ -13,6 +13,7 @@ class UserEventsController < ApplicationController
   # GET /user_events/1
   # GET /user_events/1.json
   def show
+    redirect_to events_path
   end
 
   # GET /user_events/new
@@ -22,6 +23,7 @@ class UserEventsController < ApplicationController
 
   # GET /user_events/1/edit
   def edit
+    redirect_to events_path
   end
 
   # POST /user_events
