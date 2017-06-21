@@ -1,5 +1,21 @@
-<h1>New Photo</h1>
+<% if !@photo.errors.empty? %>
+   <div class = "alert alert-error">
 
-<%= render 'form', photo: @photo %>
+      <ul>
+         <% @photo.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
 
-<%= link_to 'Back', photos_path %>
+   </div>
+<% end %>
+
+<div class = "well">
+   <%= form_for @photo, html: { multipart: true } do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+   <% end %>
+</div>
