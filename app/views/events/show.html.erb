@@ -4,7 +4,7 @@
       <% if @event.photos.exists? %>
         <%= image_tag @event.photos.first.attachment_url %>
       <% else %>
-        Placeholder Image Needed
+          Placeholder Image
       <% end %>
     </div>
     <br>

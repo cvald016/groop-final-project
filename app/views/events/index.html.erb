@@ -22,7 +22,11 @@
               <div class="container">
                 <%= link_to event_path(all_attending_event.id) do %>
                   <div class="row evt-feed-img">
-                      Event IMG
+                    <% if all_attending_event.photos.exists? %>
+                      <%= image_tag all_attending_event.photos.first.attachment_url %>
+                    <% else %>
+                        Placeholder Image
+                    <% end %>
                       <p><%= all_attending_event.title %></p>
                       <p><%= time_formatter(all_attending_event.date) %></p>
                       <p><%= all_attending_event.location %></p>
@@ -48,7 +52,11 @@
             <div class="container">
               <%= link_to event_path(friend_event.id) do %>
                 <div class="row friend-evt-feed-img">
-                    Event IMG
+                  <% if friend_event.photos.exists? %>
+                    <%= image_tag friend_event.photos.first.attachment_url %>
+                  <% else %>
+                      Placeholder Image
+                  <% end %>
                     <p><%= friend_event.title %></p>
                     <p><%= time_formatter(friend_event.date) %></p>
                     <p><%= friend_event.location %></p>
@@ -83,7 +91,11 @@
             <div class="container">
               <%= link_to event_path(past_event.id) do %>
                 <div class="row evt-feed-img">
-                    Event IMG
+                  <% if past_event.photos.exists? %>
+                    <%= image_tag past_event.photos.first.attachment_url %>
+                  <% else %>
+                      Placeholder Image
+                  <% end %>
                     <p><%= past_event.title %></p>
                     <p><%= time_formatter(past_event.date) %></p>
                     <p><%= past_event.location %></p>
