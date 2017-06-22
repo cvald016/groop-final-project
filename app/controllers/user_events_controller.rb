@@ -2,7 +2,6 @@ class UserEventsController < ApplicationController
   before_action :set_user_event, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
 
-
   # GET /user_events
   # GET /user_events.json
   def index
@@ -26,8 +25,11 @@ class UserEventsController < ApplicationController
     redirect_to events_path
   end
 
+
   # POST /user_events
   # POST /user_events.json
+
+
   def create
     if (Event.find_by(id: user_event_params[:event_id]).creator_id == current_user.id) || (Event.find(user_event_params[:event_id]).user_events.where(user_id: current_user.id).any?)
       redirect_to event_path(user_event_params[:event_id]), notice: 'You are already in this groop!'
@@ -46,6 +48,7 @@ class UserEventsController < ApplicationController
         format.json { render json: @user_event.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /user_events/1

@@ -1,13 +1,11 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Image:</strong>
-  <%= @photo.image %>
+  <%= @photo.attachment %>
 </p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @photo.title %>
+  <strong>Name:</strong>
+  <%= @photo.name %>
 </p>
 
 <p>
@@ -16,4 +14,3 @@
 </p>
 
 <%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>

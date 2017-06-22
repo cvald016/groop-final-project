@@ -1,31 +1,26 @@
-<p id="notice"><%= notice %></p>
+<%= link_to "New Picture", new_event_photo_path, class: "btn btn-primary" %>
+<br />
+<br />
 
-<h1>Photos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Title</th>
-      <th>Event</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @photos.each do |photo| %>
+<table class = "table table-bordered table-striped">
+   <thead>
       <tr>
-        <td><%= photo.image %></td>
-        <td><%= photo.title %></td>
-        <td><%= photo.event %></td>
-        <td><%= link_to 'Show', photo %></td>
-        <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-        <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <th>Name</th>
+         <th>Download Link</th>
+         <th> </th>
       </tr>
-    <% end %>
-  </tbody>
+   </thead>
+
+   <tbody>
+      <% @photos.each do |photo| %>
+
+         <tr>
+            <td><%= photo.name %></td>
+            <td><%= button_to "Delete",  photo, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{photo.name}?" %></td>
+            <td><%= image_tag photo.attachment_url %></td>
+         </tr>
+
+      <% end %>
+   </tbody>
+
 </table>
-
-<br>
-
-<%= link_to 'New Photo', new_photo_path %>

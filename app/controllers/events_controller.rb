@@ -8,6 +8,7 @@ class EventsController < ApplicationController
     @events = Event.all
 
     # Past Events that you and your friends held
+    # 4 events with seed file and user 9
     @past_events = @events.select do |event|
       event.date < DateTime.now
     end
@@ -22,6 +23,7 @@ class EventsController < ApplicationController
       {current_user: current_user.id, current_event_date: DateTime.now})
 
     # All the current events you are involved in
+    # 4 events with seed file and user 9
     @all_attending_events = @my_events + user_events(@attending_events)
 
     # Friend made events show all events not created by you
@@ -30,6 +32,7 @@ class EventsController < ApplicationController
     end
 
      # Events made by your friends, where you are not attending
+     # 3 events with seed file and user 9
      @friend_events = @friend_made_events - user_events(@attending_events)
   end
 
