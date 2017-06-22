@@ -12,6 +12,31 @@ img {
   font-size: inherit;
   }
 
+.navbar {
+align-items: center;
+align-content: space-between;
+}
+
+.bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar-right {
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+  padding-left: 800px;
+  list-style: none;
+}
+
+// Font Awesome Icons
+.fa {
+  color: white;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create your own classes
 // to make views framework-neutral
@@ -44,15 +69,18 @@ section {
   margin-top: 20px;
 }
 
-.test-border {
-  border: 1px solid black;
+// For images in the event feed page
+.evt-feed-img {
+  height: 189px;
+  background-color: red;
 }
 
-.evt-feed-img {
+.friend-evt-feed-img {
   height: 157px;
   background-color: red;
 }
 
+// Default style for row - #TODO - REMOVE
 .color-row {
   background-color: yellow;
   height: 189px;
@@ -65,4 +93,12 @@ main {
   background-color: #eee;
   padding: 0;
   width: 100%;
+
+// For images in the event show page
+.evt-img {
+  height: 189px;
+}
+
+#no-image {
+  color: black;
 }

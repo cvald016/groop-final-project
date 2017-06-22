@@ -16,6 +16,18 @@
     <%= form.text_field :full_name, id: :user_name %>
   </div>
 
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email, id: :user_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.phone_field :phone_number, id: :user_name %>
+  </div>
+
+
+
   <div class="actions">
     <%= form.submit %>
   </div>

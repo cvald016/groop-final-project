@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
-  
+  helper_method :time_formatter
 
   protected
 
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def time_formatter(date)
-  	date.strftime("%A,%B %d, %Y - %I:%M %p")
+    date.strftime("%A, %B %d, %Y - %I:%M %p")
   end
-  
+
 end

@@ -1,8 +1,17 @@
 <%# add navigation links to this file %>
-<li class='nav-item'><%= link_to 'About', page_path('about'), class: 'nav-link' %>ggggggg</li>
 <% if current_user %>
-  <a class="btn btn-lg btn-primary" href="/logout" role="button">Log Out</a>
+
+  <%= link_to new_event_path do %>
+    <li><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a></li>
+  <% end %>
+
+  <%= link_to user_path(current_user.id) do %>
+    <li><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></a></li>
+  <% end %>
+
+  <li><a class="btn btn-primary btn login" href="/logout" role="button">Log Out</a></li>
+
 <% else %>
-  <a class="btn btn-lg btn-primary" href="/auth/facebook" role="button">Log In With Facebook</a>
+  <li><a class="btn btn-primary btn login" href="/auth/facebook" role="button">Log In With Facebook</a></li>
 <% end %>
 <%= link_to 'Help', static_pages_help_path, class: 'navbar-brand' %>

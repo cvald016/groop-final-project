@@ -2,7 +2,6 @@ class UserEventsController < ApplicationController
   before_action :set_user_event, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
 
-
   # GET /user_events
   # GET /user_events.json
   def index
@@ -13,6 +12,7 @@ class UserEventsController < ApplicationController
   # GET /user_events/1
   # GET /user_events/1.json
   def show
+    redirect_to events_path
   end
 
   # GET /user_events/new
@@ -22,12 +22,22 @@ class UserEventsController < ApplicationController
 
   # GET /user_events/1/edit
   def edit
+    redirect_to events_path
   end
+
 
   # POST /user_events
   # POST /user_events.json
+
+
   def create
-    @user_event = UserEvent.new(user_event_params)
+    if (Event.find_by(id: user_event_params[:event_id]).creator_id == current_user.id) || (Event.find(user_event_params[:event_id]).user_events.where(user_id: current_user.id).any?)
+      redirect_to event_path(user_event_params[:event_id]), notice: 'You are already in this groop!'
+      return
+    else
+      @user_event = UserEvent.new(user_event_params)
+      MessageSender.send_message(message)
+    end
 
     respond_to do |format|
       if @user_event.save
@@ -38,6 +48,7 @@ class UserEventsController < ApplicationController
         format.json { render json: @user_event.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /user_events/1
@@ -66,6 +77,10 @@ class UserEventsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def message
+      "Great news! #{current_user.full_name} joined your event, #{Event.find(user_event_params[:event_id]).title}!"
+    end
+
     def set_user_event
       @user_event = UserEvent.find(params[:id])
     end
@@ -76,5 +91,3 @@ class UserEventsController < ApplicationController
     end
 
 end
-
-

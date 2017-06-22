@@ -1,9 +1,87 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.full_name %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 color-row" >
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+      <div class="2">
+        Avatar here
+      </div>
+
+      <p><strong>Name:</strong> <%= @user.full_name %></p>
+      <% if @user.id == current_user.id %>
+      <%= link_to 'Edit Profile', edit_user_path(@user) %>
+      <% end %>
+
+      <p># Friends</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="bd-example bd-example-tabs" role="tabpanel">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Attending</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="History-tab" data-toggle="tab" href="#History" role="tab" aria-controls="History" aria-expanded="false">History</a>
+    </li>
+
+  </ul>
+
+  <div class="tab-content" id="myTabContent">
+    <div role="tabpanel" class="tab-pane fade active show" id="home" aria-labelledby="home-tab" aria-expanded="true">
+      <% @all_current_events.sort_by(&:date).each do |current_event| %>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 color-row" >
+
+              <div class="container">
+                <%= link_to event_path(current_event.id) do %>
+                  <div class="row evt-feed-img">
+                      Event IMG
+                      <p><%= current_event.title %></p>
+                      <p><%= time_formatter(current_event.date) %></p>
+                      <p><%= current_event.location %></p>
+                      <p><%= current_event.creator.full_name %></p>
+                  </div>
+                <% end %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+
+
+    <div class="tab-pane fade" id="History" role="tabpanel" aria-labelledby="History-tab" aria-expanded="false">
+      <% @all_past_events.sort_by(&:date).reverse.each do |past_event| %>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 color-row" >
+
+              <div class="container">
+                <%= link_to event_path(past_event.id) do %>
+                  <div class="row evt-feed-img">
+                      Event IMG
+                      <p><%= past_event.title %></p>
+                      <p><%= time_formatter(past_event.date) %></p>
+                      <p><%= past_event.location %></p>
+                      <p><%= past_event.creator.full_name %></p>
+                  </div>
+                <% end %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+
+
+
+  </div>
+</div>

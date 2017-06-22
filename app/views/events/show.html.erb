@@ -1,23 +1,53 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
-
-<div>
-  <%= @event.creator.full_name %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 evt-img friend-evt-feed-img">
+      <% if @event.photos.exists? %>
+        <%= image_tag @event.photos.first.attachment_url %>
+      <% else %>
+        Placeholder Image Needed
+      <% end %>
+    </div>
+    <br>
+    <br>
+    <div class="col-12">
+        <%= link_to "New Picture", new_event_photo_path(@event.id), class: "btn btn-primary" %>
+    </div>
+  </div>
 </div>
 
-<div>
-  <% @event.users.each do |user| %>
-    <p>
-      <%= user.full_name %>
-    </p>
-  <% end %>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-12 color-row">
+      <br>
+      <h2><%= @event.title %></h2>
+        <p>
+          <%= time_formatter(@event.date) %>
+        </p>
+
+        <p>
+          <%= @event.location %>
+        </p>
+
+        <p>
+          <%= @event.creator.full_name %>
+        </p>
+
+    </div>
+  </div>
 </div>
+<%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post, class: "btn btn-primary" %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 color-row">
+      <br>
+      <h2>Groop</h2>
+      <% @event.users.each do |user| %>
+        <p>
+          <%= user.full_name %>
+        </p>
+      <% end %>
 
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
-<%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post %>
+    </div>
+  </div>
+</div>
