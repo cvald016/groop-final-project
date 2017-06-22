@@ -7,11 +7,14 @@ end
 
 
 ruby '2.3.4'
+# For the awesome icons!
+gem "font-awesome-rails"
 # For notifications on event changes
 gem 'twilio-ruby'
 # For facebook login
 gem 'carrierwave'
 # gem 'bootstrap-sass'
+# For facebook login and authentication
 gem 'omniauth'
 gem 'omniauth-facebook'
 # To read records in the console in table form
