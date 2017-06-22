@@ -82,6 +82,8 @@ GEM
     ffi (1.9.18)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
+    fullpagejs-rails (2.7.5.1)
+      railties (> 3.1)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashie (3.5.5)
@@ -236,6 +238,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   dotenv-rails
   font-awesome-rails
+  fullpagejs-rails (~> 2.7, >= 2.7.5.1)
   high_voltage
   hirb
   hub
