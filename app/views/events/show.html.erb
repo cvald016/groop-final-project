@@ -30,6 +30,7 @@
         </p>
 
         <p>
+          <%= image_tag("#{@event.creator.picture_url}") %>
           <%= @event.creator.full_name %>
         </p>
 
@@ -44,6 +45,7 @@
       <h2>Groop</h2>
       <% @event.users.each do |user| %>
         <p>
+          <%= image_tag("#{user.picture_url}") %>
           <%= user.full_name %>
         </p>
       <% end %>
