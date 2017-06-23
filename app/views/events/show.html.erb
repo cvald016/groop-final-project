@@ -1,55 +1,4 @@
-<style>
 
-	/* Style for our header texts
-	* --------------------------------------- */
-	h1{
-		font-size: 5em;
-		font-family: arial,helvetica;
-		color: #fff;
-		margin:0;
-		padding:0;
-	}
-
-
-	/* Centered texts in each section
-	* --------------------------------------- */
-	.section{
-		text-align:center;
-		overflow: hidden;
-	}
-
-  .scrollable-element{
-           height: 600px;
-           width: 100%;
-           overflow-y: scroll;
-           margin: 0 auto;
- }
-
- .box1{
-     display: block;
-     background:#7BAABE;
-     margin: 20px;
-     padding: 0px;
-
- }
-
- .box2{
-     display: block;
-     background: #4BBFC3;
-     margin: 20px;
-     padding: 0px;
-
- }
-
- .box3{
-     display: block;
-     background: #1bbc9b;
-     margin: 20px;
-     padding: 0px;
-
- }
-
-	</style>
 
 <div id="fullpage">
     <div class="section active" id="section0">
@@ -59,22 +8,24 @@
           <br>
           <br>
           <div class="box1">
-            <% if @event.photos.exists? %>
-              <%= image_tag @event.photos.first.attachment_url %>
-            <% else %>
-                Placeholder Image
-            <% end %>
+							<% if @event.photos.exists? %>
+	              <%= image_tag @event.photos.first.attachment_url %>
+	            <% else %>
+	                Placeholder Image
+	            <% end %>
           <br>
+					<br>
               <%= link_to "New Picture", new_event_photo_path(@event.id), class: "btn btn-primary" %>
-          </div>
+					</div>
 
           <div class="box2">
             <h2><%= @event.title %></h2>
-              <p><%= time_formatter(@event.date) %></p>
-              <p><%= @event.location %></p>
+              <p><h6><%= time_formatter(@event.date) %></h6></p>
+              <p><h6><%= @event.location %></h6></p>
               <p>
-                <%= image_tag("#{@event.creator.picture_url}") %>
-                <%= @event.creator.full_name %>
+                <%= image_tag("#{@event.creator.picture_url}", :class => "avatar-img") %>
+								<br>
+								<h6><%= (@event.creator.full_name).split.first %></h6>
               </p>
               <%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post, class: "btn btn-primary" %>
           </div>
@@ -83,10 +34,9 @@
           <div class="box3">
             <h2>Groop</h2>
             <% @event.users.each do |user| %>
-            <p>
-              <%= image_tag("#{user.picture_url}") %>
-              <%= user.full_name %>
-            </p>
+              <%= image_tag("#{user.picture_url}", :class => "avatar-img") %>
+							<br>
+							<h6><%= (user.full_name).split.first %></h6>
             <% end %>
           </div>
 
