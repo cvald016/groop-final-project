@@ -16,3 +16,13 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+
+$(document).ready(function() {
+    $('#fullpage').fullpage({
+        verticalCentered: true,
+        css3: true,
+        sectionsColor: ['#1bbc9b']
+        // Other colors '#4BBFC3', '#7BAABE'
+    });
+});
