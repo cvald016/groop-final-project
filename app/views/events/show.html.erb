@@ -25,161 +25,71 @@
            margin: 0 auto;
  }
 
- .box{
+ .box1{
      display: block;
-     background: red;
+     background:#7BAABE;
      margin: 20px;
      padding: 0px;
 
  }
 
-	/* Layer with position absolute in order to have it over the video
-	* --------------------------------------- */
-	/*#section0 .layer{
-		position: absolute;
-		z-index: 4;
-		width: 100%;
-		left: 0;
-		top: 43%;*/
+ .box2{
+     display: block;
+     background: #4BBFC3;
+     margin: 20px;
+     padding: 0px;
 
-		/*
-		* Preventing flicker on some browsers
-		* See http://stackoverflow.com/a/36671466/1081396  or issue #183
-		*/
-		/*-webkit-transform: translate3d(0,0,0);
-		-ms-transform: translate3d(0,0,0);
-		transform: translate3d(0,0,0);
-	}*/
+ }
 
-	/*solves problem with overflowing video in Mac with Chrome */
-	/*#section0{
-		overflow: hidden;
-		height: 50%;
-	}*/
+ .box3{
+     display: block;
+     background: #1bbc9b;
+     margin: 20px;
+     padding: 0px;
 
-
-	/* Bottom menu
-	* --------------------------------------- */
-	/*#infoMenu li a {
-		color: #fff;
-	}*/
-
-
-	/* Hiding video controls
-	* See: https://css-tricks.com/custom-controls-in-html5-video-full-screen/
-	* --------------------------------------- */
-	video::-webkit-media-controls {
-	  display:none !important;
-	}
-
-	.myContent{
-			height: 500px;
-		}
+ }
 
 	</style>
 
-
-
-<!-- <ul id="menu">
-<li data-menuanchor="images"><a href="#images">Images</a></li>
-<li data-menuanchor="details"><a href="#details">Event Details</a></li>
-<li data-menuanchor="friend"><a href="#friends">Friends Attending</a></li>
-</ul> -->
-
-
-<!-- <div id="footer">Footer</div> -->
 <div id="fullpage">
-
-  <!-- Second attempt part of the slides-->
-  <!-- <div class="section fp-auto-height" id="section0"> -->
-  <!-- third attempt -->
     <div class="section active" id="section0">
+      <div class="scrollable-element">
+          <br>
+          <br>
+          <br>
+          <br>
+          <div class="box1">
+            <% if @event.photos.exists? %>
+              <%= image_tag @event.photos.first.attachment_url %>
+            <% else %>
+                Placeholder Image
+            <% end %>
+          <br>
+              <%= link_to "New Picture", new_event_photo_path(@event.id), class: "btn btn-primary" %>
+          </div>
 
-	   <!-- <div class="slide" id="slide1"> -->
-        <!-- <div class="myContent"> -->
-
-          <!-- Old code -->
-          <!-- <div class="container"> -->
-            <!-- <div class="row"> -->
-              <!-- <div class="col-12 evt-img friend-evt-feed-img"> -->
-
-              <div class="scrollable-element">
-
-              <div class="box">
-                <% if @event.photos.exists? %>
-                  <%= image_tag @event.photos.first.attachment_url %>
-                <% else %>
-                    Placeholder Image
-                <% end %>
-              <!-- </div> -->
-              <br>
-              <!-- <div class="col-12"> -->
-                  <%= link_to "New Picture", new_event_photo_path(@event.id), class: "btn btn-primary" %>
-
-              </div>
-              <!-- </div> -->
-              <!-- </div> -->
-            <!-- </div> -->
-          <!-- </div> -->
+          <div class="box2">
+            <h2><%= @event.title %></h2>
+              <p><%= time_formatter(@event.date) %></p>
+              <p><%= @event.location %></p>
+              <p>
+                <%= image_tag("#{@event.creator.picture_url}") %>
+                <%= @event.creator.full_name %>
+              </p>
+              <%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post, class: "btn btn-primary" %>
+          </div>
 
 
+          <div class="box3">
+            <h2>Groop</h2>
+            <% @event.users.each do |user| %>
+            <p>
+              <%= image_tag("#{user.picture_url}") %>
+              <%= user.full_name %>
+            </p>
+            <% end %>
+          </div>
 
-
-      <!-- </div> -->
-	<!-- </div> -->
-
-  <!-- <div class="section fp-auto-height" id="section1">
-			<div class="myContent"> -->
-        <!-- <div class="container"> -->
-          <!-- <div class="row"> -->
-            <!-- <div class="col-12 color-row"> -->
-
-            <div class="box">
-
-
-              <br>
-              <h2><%= @event.title %></h2>
-                <p><%= time_formatter(@event.date) %></p>
-
-                <p><%= @event.location %></p>
-
-                <p>
-                  <%= image_tag("#{@event.creator.picture_url}") %>
-                  <%= @event.creator.full_name %>
-                </p>
-
-                <%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post, class: "btn btn-primary" %>
-
-              </div>
-            <!-- </div> -->
-          <!-- </div> -->
-        <!-- </div> -->
-			<!-- </div>
-	</div> -->
-
-  <!-- <div class="section fp-auto-height" id="section2">
-      <div class="myContent"> -->
-        <!-- <div class="container"> -->
-          <!-- <div class="row"> -->
-            <!-- <div class="col-12 color-row"> -->
-
-            <div class="box">
-
-
-              <h2>Groop</h2>
-              <% @event.users.each do |user| %>
-                <p>
-                  <%= image_tag("#{user.picture_url}") %>
-                  <%= user.full_name %>
-                </p>
-              <% end %>
-
-            </div>
-            <!-- </div> -->
-          <!-- </div> -->
-        <!-- </div> -->
-      <!-- </div>
-  </div> -->
-        </div>
     </div>
+  </div>
 </div>

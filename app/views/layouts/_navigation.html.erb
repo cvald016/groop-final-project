@@ -1,33 +1,7 @@
-<style>
-
-#header {
-    top: 0px;
-}
-
-/*#footer{
-  bottom: 0px;
-}*/
-/*Footer can be included in the future*/
-#header {
-      position:fixed;
-      height: 50px;
-      display:block;
-      width: 100%;
-      background: #333;
-      z-index:9;
-      text-align:center;
-      color: #f2f2f2;
-      padding: 20px 0 0 0;
-  }
-
-
-</style>
-
-
 <div id="header">
-<!-- <div class="navbar navbar-dark bg-inverse navbar-fixed-top" > -->
-  <!-- <div class="container bar"> -->
+  <div class="container bar">
 
+    <div class="navbar-logo">
       <% if current_user %>
         <%= link_to events_path do %>
           <%= image_tag "groop-white.png", :class => "logo_img" %>
@@ -37,10 +11,10 @@
           <%= image_tag "groop-white.png", :class => "logo_img" %>
         <% end %>
       <% end %>
-
+    </div>
     <ul class="navbar-right">
         <%= render 'layouts/navigation_links' %>
     </ul>
 
-  <!-- </div> -->
+  </div>
 </div>
