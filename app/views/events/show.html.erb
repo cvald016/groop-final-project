@@ -3,33 +3,33 @@
       <div class="scrollable-element">
           <br>
           <br>
-          <br>
-          <br>
           <div class="box1">
-							<% if @event.photos.exists? %>
-	              <%= image_tag @event.photos.first.attachment_url %>
-	            <% else %>
-	                Placeholder Image
-	            <% end %>
-          <br>
-					<br>
+    					<% if @event.photos.exists? %>
+                <div class="center-cropped">
+                  <%= image_tag @event.photos.first.attachment_url %>
+                </div>
+              <% else %>
+                <%= image_tag('camera.png') %>
+              <% end %>
+              <br>
+              <br>
               <%= link_to "New Picture", new_event_photo_path(@event.id), class: "btn btn-primary" %>
 					</div>
 
           <div class="box2">
             <h2><%= @event.title %></h2>
-              <p><h6><%= time_formatter(@event.date) %></h6></p>
-              <p><h6><%= @event.location %></h6></p>
-              <p>
-                <%= image_tag("#{@event.creator.picture_url}", :class => "avatar-img") %>
-								<br>
-								<h6><%= (@event.creator.full_name).split.first %></h6>
-              </p>
-              <% if @event.user_events.exists?(user_id: current_user.id) %>
-                <% elsif @event.creator_id == current_user.id %>
-                <% else %>
-                <%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post, class: "btn btn-primary" %>
-              <% end %>
+            <p><h6><%= time_formatter(@event.date) %></h6></p>
+            <p><h6><%= @event.location %></h6></p>
+            <p>
+              <%= image_tag("#{@event.creator.picture_url}", :class => "avatar-img") %>
+							<br>
+							<h6><%= (@event.creator.full_name).split.first %></h6>
+            </p>
+            <% if @event.user_events.exists?(user_id: current_user.id) %>
+              <% elsif @event.creator_id == current_user.id %>
+              <% else %>
+              <%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post, class: "btn btn-primary" %>
+            <% end %>
           </div>
 
 
