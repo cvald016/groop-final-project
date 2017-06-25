@@ -8,10 +8,11 @@ img {
 }
 
 body {
-  background: url(back.jpg) top center no-repeat;
+  // background: url(back.jpg) top center no-repeat;
   background-size: cover;
   // overflow: scroll;
   // overflow-y:hidden;
+background: url(bg-pattern.png), linear-gradient(to left, #eceeef, #ffffff);
 }
 
 /* Style for our header texts
@@ -115,10 +116,10 @@ section {
 	}
 
   .scrollable-element{
-           height: 600px;
-           width: 100%;
-           overflow-y: scroll;
-           margin: 0 auto;
+     height: 600px;
+     width: 100%;
+     overflow-y: scroll;
+     margin: 0 auto;
  }
 
  .box1{
@@ -132,8 +133,8 @@ section {
  }
 
  .center-cropped {
-  width: auto;
-  height: 200px;
+  width: 100%;
+  max-height: 350px;
   // background-position: center center;
   // background-repeat: no-repeat;
   object-fit: none;
