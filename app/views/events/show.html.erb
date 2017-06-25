@@ -3,14 +3,14 @@
       <div class="scrollable-element">
           <br>
           <br>
-          <br>
-          <br>
           <div class="box1">
-							<% if @event.photos.exists? %>
-	              <%= image_tag @event.photos.first.attachment_url %>
-	            <% else %>
-	                Placeholder Image
-	            <% end %>
+              <div class="center-cropped">
+    						<% if @event.photos.exists? %>
+                  <%= image_tag @event.photos.first.attachment_url, :class => 'img-responsive' %>
+                <% else %>
+                    <%= image_tag('camera.png') %>
+                <% end %>
+              </div>
           <br>
 					<br>
               <%= link_to "New Picture", new_event_photo_path(@event.id), class: "btn btn-primary" %>

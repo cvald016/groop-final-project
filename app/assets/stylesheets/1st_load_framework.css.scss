@@ -10,7 +10,8 @@ img {
 body {
   background: url(back.jpg) top center no-repeat;
   background-size: cover;
-  overflow-y:hidden;
+  // overflow: scroll;
+  // overflow-y:hidden;
 }
 
 /* Style for our header texts
@@ -65,9 +66,9 @@ h1{
 
 // Font Awesome Icons
 .fa {
-  color: white;
   padding-left: 8px;
   padding-right: 8px;
+  color: white;
 }
 
 // create your own classes
@@ -122,16 +123,33 @@ section {
 
  .box1{
      display: block;
-     background:#7BAABE;
+    //  background:#7BAABE;
      margin: 20px;
-     padding-top: 20px;
+     padding-top: 5px;
      padding-bottom: 20px;
 		 border-radius: 0.5%;
+
  }
+
+ .center-cropped {
+  width: auto;
+  height: 200px;
+  // background-position: center center;
+  // background-repeat: no-repeat;
+  object-fit: none;
+  object-position: bottom;
+  overflow: hidden;
+}
+
+// .center-cropped img {
+//   max-height: 100%;
+//   min-width: 100%;
+// }
 
  .box2{
      display: block;
-     background: #4BBFC3;
+    //  background: #4BBFC3;
+     background: #304E55;
      margin: 20px;
      padding: 20px;
 		 border-radius: 0.5%;
@@ -142,7 +160,10 @@ section {
  .box3{
      display: block;
      align-items: center;
-     background: #1bbc9b;
+    // logo yellow
+    //  background: #E7A820;
+    // logo green
+     background: #36BB90;
      margin: 20px;
      padding: 20px;
 		 border-radius: 0.5%;
