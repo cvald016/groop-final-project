@@ -1,5 +1,3 @@
-
-
 <div id="fullpage">
     <div class="section active" id="section0">
       <div class="scrollable-element">
@@ -27,17 +25,25 @@
 								<br>
 								<h6><%= (@event.creator.full_name).split.first %></h6>
               </p>
-              <%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post, class: "btn btn-primary" %>
+              <% if @event.user_events.exists?(user_id: current_user.id) %>
+                <% elsif @event.creator_id == current_user.id %>
+                <% else %>
+                <%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post, class: "btn btn-primary" %>
+              <% end %>
           </div>
 
 
           <div class="box3">
-            <h2>Groop</h2>
-            <% @event.users.each do |user| %>
-              <%= image_tag("#{user.picture_url}", :class => "avatar-img") %>
-							<br>
-							<h6><%= (user.full_name).split.first %></h6>
-            <% end %>
+          <h2>Groop</h2>
+            <div class="box3-1">
+              <% @event.users.each do |user| %>
+                <span>
+                <%= image_tag("#{user.picture_url}", :class => "avatar-img") %>
+  							<br>
+  							<h6><%= (user.full_name).split.first %></h6>
+                </span>
+              <% end %>
+            </div>
           </div>
 
     </div>

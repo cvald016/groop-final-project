@@ -107,11 +107,11 @@ section {
 
 	/* Centered texts in each section
 	* --------------------------------------- */
-	// .section{
-	// 	padding: 5px;
-	// 	overflow: scroll;
-	// 	overflow-y: hidden;
-	// }
+	.section{
+		padding: 5px;
+		overflow: scroll;
+		overflow-y: hidden;
+	}
 
   .scrollable-element{
            height: 600px;
@@ -141,14 +141,27 @@ section {
 
  .box3{
      display: block;
-    //  flex-direction: row;
      align-items: center;
-    //  justify-content: space-around;
-    //  flex-wrap: wrap;
      background: #1bbc9b;
      margin: 20px;
      padding: 20px;
 		 border-radius: 0.5%;
+ }
+
+ .box3-1{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   overflow: scroll;
+   overflow-x: hidden;
+   overflow-y: hidden;
+ }
+
+ .box3-1 span {
+   padding-left: 20px;
+   padding-right: 20px;
  }
 
 .avatar-img {
