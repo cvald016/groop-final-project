@@ -12,8 +12,17 @@ body {
   background-size: cover;
   // overflow: scroll;
   // overflow-y:hidden;
-background: url(bg-pattern.png), linear-gradient(to left, #eceeef, #ffffff);
+  background: url(bg-pattern.png), linear-gradient(to left, #eceeef, #ffffff);
 }
+
+.container{
+  padding: 0px;
+}
+
+.container-fluid{
+  padding: 0px;
+}
+
 
 /* Style for our header texts
 * --------------------------------------- */
@@ -44,25 +53,28 @@ h1{
   .logo_img {
     height: 35px;
     object-fit: cover;
+    padding-right: 100px;
   }
 
   .bar {
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
 
   .navbar-right {
     align-items: center;
     flex-direction: row;
     display: flex;
-    padding-left: 800px;
     list-style: none;
   }
 
-
-// override for the 'Home' navigation link
 .navbar-brand {
   font-size: inherit;
+}
+
+.nav-tabs .nav-item{
+  font-size: 18px;
 }
 
 // Font Awesome Icons
@@ -133,13 +145,15 @@ section {
  }
 
  .center-cropped {
+  // max-width: 1450px;
   width: 100%;
-  max-height: 350px;
+  max-height: 500px;
   // background-position: center center;
   // background-repeat: no-repeat;
   object-fit: none;
   object-position: bottom;
   overflow: hidden;
+  display: inline-block;
 }
 
 // .center-cropped img {
@@ -167,7 +181,7 @@ section {
      background: #36BB90;
      margin: 20px;
      padding: 20px;
-		 border-radius: 0.5%;
+		 border-radius: 3%;
  }
 
  .box3-1{
@@ -188,8 +202,49 @@ section {
 
 .avatar-img {
   max-height: 80px;
-  border-radius: 10%;
+  border-radius: 50%;
   // margin: 10px;
+}
+
+// User show page
+
+//for the tabs
+.center-nav{
+  width: 85%;
+  display: inline-flex;
+}
+
+.box4{
+  display: block;
+  margin: 0px;
+  padding-top: 0px;
+  background: #304E55;
+}
+
+.evt-view{
+  position: relative;
+}
+
+.evt-img{
+  position: relative;
+  z-index: 2;
+}
+
+.evt-img img{
+  z-index: -1;
+}
+
+.evt-details{
+  background: rgba(51, 51, 51, 0.57);
+  z-index: 999;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding-bottom: 3px;
 }
 
 // For images in the event feed page #TODO - Remove
@@ -218,14 +273,3 @@ main {
   padding: 0;
   width: 100%;
 }
-
-// For images in the event show page
-// #evt-img {
-//   max-height: 200px;
-//   object-fit: contain;
-// }
-
-/*Footer can be included in the future*/
-/*#footer{
-  bottom: 0px;
-}*/
