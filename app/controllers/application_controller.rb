@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   helper_method :time_formatter
+  helper_method :friend_gen
 
   protected
 
@@ -14,6 +15,11 @@ class ApplicationController < ActionController::Base
 
   def time_formatter(date)
     date.strftime("%A, %B %d, %Y - %I:%M %p")
+  end
+
+  # For demo purposes
+  def friend_gen
+    rand(100...273)
   end
 
 end

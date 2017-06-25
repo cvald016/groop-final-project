@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col-12 color-row" >
 
-      <div class="2">
-        Avatar here
+      <div class="col-12">
+        <%= image_tag("#{@user.picture_url}") %>
       </div>
 
       <p><strong>Name:</strong> <%= @user.full_name %></p>
@@ -12,7 +12,8 @@
       <%= link_to 'Edit Profile', edit_user_path(@user) %>
       <% end %>
 
-      <p># Friends</p>
+
+      <p><%= "#{friend_gen} Friends" %></p>
     </div>
   </div>
 </div>
@@ -39,7 +40,11 @@
               <div class="container">
                 <%= link_to event_path(current_event.id) do %>
                   <div class="row evt-feed-img">
-                      Event IMG
+                    <% if current_event.photos.exists? %>
+                      <%= image_tag current_event.photos.first.attachment_url %>
+                    <% else %>
+                        Placeholder Image
+                    <% end %>
                       <p><%= current_event.title %></p>
                       <p><%= time_formatter(current_event.date) %></p>
                       <p><%= current_event.location %></p>
@@ -65,7 +70,11 @@
               <div class="container">
                 <%= link_to event_path(past_event.id) do %>
                   <div class="row evt-feed-img">
-                      Event IMG
+                    <% if past_event.photos.exists? %>
+                      <%= image_tag past_event.photos.first.attachment_url %>
+                    <% else %>
+                        Placeholder Image
+                    <% end %>
                       <p><%= past_event.title %></p>
                       <p><%= time_formatter(past_event.date) %></p>
                       <p><%= past_event.location %></p>

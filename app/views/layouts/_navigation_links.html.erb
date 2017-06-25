@@ -1,4 +1,3 @@
-<%# add navigation links to this file %>
 <% if current_user %>
 
   <%= link_to new_event_path do %>
@@ -14,4 +13,3 @@
 <% else %>
   <li><a class="btn btn-primary btn login" href="/auth/facebook" role="button">Log In With Facebook</a></li>
 <% end %>
-<%= link_to 'Help', static_pages_help_path, class: 'navbar-brand' %>

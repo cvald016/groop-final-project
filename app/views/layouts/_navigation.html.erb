@@ -1,45 +1,20 @@
-<%# navigation styled for Bootstrap 4.0 %>
-<div class="navbar navbar-dark bg-inverse navbar-fixed-top" >
+<div id="header">
   <div class="container bar">
 
+    <div class="navbar-logo">
       <% if current_user %>
         <%= link_to events_path do %>
-          <i class="fa fa-users fa-5x" aria-hidden="true"></i>
+          <%= image_tag "groop-white.png", :class => "logo_img" %>
         <% end %>
       <% else %>
         <%= link_to root_path do %>
-          <i class="fa fa-users fa-5x" aria-hidden="true"></i>
+          <%= image_tag "groop-white.png", :class => "logo_img" %>
         <% end %>
       <% end %>
-
+    </div>
     <ul class="navbar-right">
         <%= render 'layouts/navigation_links' %>
     </ul>
 
-      <!-- <div class="nav navbar-nav navbar-right"> -->
-
-      <!-- </div> -->
-    <!-- </div> -->
-
-
-  <!-- <nav class="navbar navbar-dark bg-inverse"> -->
-    <!-- <ul class="nav navbar-nav clearfix">
-      <li class="nav-item"> -->
-        <!-- <button class="navbar-toggler hidden-sm-up nav-link" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
-          &#9776;
-        </button> -->
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
-          &#9776;
-        </button>
-      </li>
-    </ul> -->
-    <!-- <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">hhhhh
-      <%= link_to "Rails bootstrap", root_path, class: 'navbar-brand' %>
-      <ul class="nav navbar-nav"> -->
-
-
-      <!-- </ul> -->
-    <!-- </div> -->
-  <!-- </nav> -->
   </div>
 </div>

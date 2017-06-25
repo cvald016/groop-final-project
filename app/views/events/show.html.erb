@@ -1,52 +1,50 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12 evt-img friend-evt-feed-img">
-      <% if @event.photos.exists? %>
-        <%= image_tag @event.photos.first.attachment_url %>
-      <% else %>
-        Placeholder Image Needed
-      <% end %>
-    </div>
-    <br>
-    <br>
-    <div class="col-12">
-        <%= link_to "New Picture", new_event_photo_path(@event.id), class: "btn btn-primary" %>
-    </div>
-  </div>
-</div>
+<div id="fullpage">
+    <div class="section active" id="section0">
+      <div class="scrollable-element">
+          <br>
+          <br>
+          <br>
+          <br>
+          <div class="box1">
+							<% if @event.photos.exists? %>
+	              <%= image_tag @event.photos.first.attachment_url %>
+	            <% else %>
+	                Placeholder Image
+	            <% end %>
+          <br>
+					<br>
+              <%= link_to "New Picture", new_event_photo_path(@event.id), class: "btn btn-primary" %>
+					</div>
 
-<br>
-<div class="container">
-  <div class="row">
-    <div class="col-12 color-row">
-      <br>
-      <h2><%= @event.title %></h2>
-        <p>
-          <%= time_formatter(@event.date) %>
-        </p>
+          <div class="box2">
+            <h2><%= @event.title %></h2>
+              <p><h6><%= time_formatter(@event.date) %></h6></p>
+              <p><h6><%= @event.location %></h6></p>
+              <p>
+                <%= image_tag("#{@event.creator.picture_url}", :class => "avatar-img") %>
+								<br>
+								<h6><%= (@event.creator.full_name).split.first %></h6>
+              </p>
+              <% if @event.user_events.exists?(user_id: current_user.id) %>
+                <% elsif @event.creator_id == current_user.id %>
+                <% else %>
+                <%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post, class: "btn btn-primary" %>
+              <% end %>
+          </div>
 
-        <p>
-          <%= @event.location %>
-        </p>
 
-        <p>
-          <%= @event.creator.full_name %>
-        </p>
-
-    </div>
-  </div>
-</div>
-<%= link_to 'Join', user_events_path(:user_event => {event_id: @event.id, user_id: current_user.id}), method: :post, class: "btn btn-primary" %>
-<div class="container">
-  <div class="row">
-    <div class="col-12 color-row">
-      <br>
-      <h2>Groop</h2>
-      <% @event.users.each do |user| %>
-        <p>
-          <%= user.full_name %>
-        </p>
-      <% end %>
+          <div class="box3">
+          <h2>Groop</h2>
+            <div class="box3-1">
+              <% @event.users.each do |user| %>
+                <span>
+                <%= image_tag("#{user.picture_url}", :class => "avatar-img") %>
+  							<br>
+  							<h6><%= (user.full_name).split.first %></h6>
+                </span>
+              <% end %>
+            </div>
+          </div>
 
     </div>
   </div>
