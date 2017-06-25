@@ -247,6 +247,21 @@ section {
   padding-bottom: 3px;
 }
 
+// For the event feed page
+.evt-feed-join{
+  width: 100%;
+  background: #304E55;
+}
+
+// #no-margin{
+//   margin-bottom: 0px;
+// }
+
+#evt-link{
+  top: 6px;
+  position: relative;
+}
+
 // For images in the event feed page #TODO - Remove
 .evt-feed-img {
   height: 189px;
