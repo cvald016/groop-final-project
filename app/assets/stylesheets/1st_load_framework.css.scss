@@ -93,6 +93,7 @@ h1{
 .form {
   @extend .col-md-6;
 }
+
 .form-centered {
   @extend .col-md-6;
   text-align: center;
@@ -101,6 +102,15 @@ h1{
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-lg;
+}
+
+.evt-form {
+  color: white;
+  font-size: 16px;
+}
+
+.evt-form .input{
+  min-width: 238px;
 }
 
 // apply styles to HTML elements
@@ -167,7 +177,7 @@ section {
      background: #304E55;
      margin: 20px;
      padding: 20px;
-		 border-radius: 0.5%;
+		 border-radius: 3%;
      align-items: center;
      justify-content: center;
  }
