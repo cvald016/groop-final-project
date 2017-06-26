@@ -18,6 +18,7 @@
 !/tmp/.keep
 
 .env
+.DS_Store
 
 /node_modules
 /yarn-error.log
