@@ -17,24 +17,35 @@
     }
 
 #myVideo{
-width: 103%;
-top: -123px;
-left: -5px;
-position: relative;
+  width: 103%;
+  top: 40px;
+  left: -5px;
+  position: relative;
+  padding-bottom: 73px;
 }
 
 #section0 {
-  background: #fdc846;
+  background: #f7c646;
 }
 
 #section1{
-  background: red;
+  font-size: 16px;
+  background: #00C290;
 }
 
 #section2{
-  background: orange;
+  font-size: 16px;
+  background: url(~/app/assets/bg-pattern.png), linear-gradient(to left, #F5A700, #F60060);
+  /*background-image: url(bg-pattern.png), linear-gradient(to left, #F5A700, #F60060);*/
 }
 
+#splash-txt{
+  font-size: 4rem;
+}
+
+.fr{
+  padding-bottom: 30px;
+}
 
 </style>
 
@@ -43,7 +54,7 @@ position: relative;
             $('#fullpage').fullpage({
                 menu: '#menu',
                 anchors: ['firstPage', 'secondPage', '3rdPage'],
-                sectionsColor: ['#000000', '#eeeeee', '#f0f0f0'],
+                // sectionsColor: ['#000000', '#eeeeee', '#f0f0f0'],
                 autoScrolling: false
             });
         });
@@ -56,28 +67,34 @@ position: relative;
           <video id="myVideo" loop muted data-autoplay>
             <source src="/FINALgroopvideo.mp4" type="video/mp4">
           </video>
-        Who are we?
-
-				<p> Groop is a social media platform designed to increase your in-person interactions. </p>
-				<p> Be Social. Meet new friends. Create a groop! </p>
+          <strong><h2 id="splash-txt">Who <br>Are We?</h2></strong>
+        <br>
+				<h3> Groop is a social media platform designed to increase your in-person interactions. </h3>
+				<!-- <h4> Be Social. Meet new friends. Create a groop! </h4> -->
         </div>
     </div>
 
     <div class="section" id="section1">
       <div class="intro">
         <div>
-          <i class="icon-user-follow text-primary"></i>
-          <h4>Create an account</h4>
+          <i class="fa fa-search-plus fa-5x fr" aria-hidden="true"></i>
+          <br>
+          <h4>See friends' events and find new friends</h4>
+          <br>
         </div>
 
         <div>
-          <i class="fa fa-search-plus" aria-hidden="true"></i>
-          <h4>Find old friends (or make new ones!) and invite them to your GROOP</h4>
+          <i class="fa fa-calendar fa-5x fr" aria-hidden="true"></i>
+          <br>
+          <h4>Create an event that your friends and family can join</h4>
+          <br>
         </div>
 
         <div>
-          <i class="icon-event text-primary"></i>
-          <h4> Create events, plan with friends, and broadcast your story!</h4S>
+          <i class="fa fa-users fa-5x fr" aria-hidden="true"></i>
+          <br>
+          <h4>Meet up with your groop!</h4S>
+          <br>
         </div>
       </div>
     </div>
