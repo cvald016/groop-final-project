@@ -1,6 +1,6 @@
 <style>
 
-.box5{
+/*.box5{
     display: block;
     margin: 0px;
     background: #36BB90;
@@ -10,31 +10,63 @@
     display: block;
     background: #E7A820;
     margin: 0px;
+}*/
+
+.intro p{
+        color: #fff;
+    }
+
+#myVideo{
+width: 103%;
+top: -133px;
+left: -5px;
+position: relative;
 }
+
+#section0 {
+  background: #fdc846;
+}
+
 
 
 </style>
 
+<script type="text/javascript">
+        $(document).ready(function() {
+            $('#fullpage').fullpage({
+                menu: '#menu',
+                anchors: ['firstPage', 'secondPage', '3rdPage'],
+                sectionsColor: ['#000000', '#eeeeee', '#f0f0f0'],
+                autoScrolling: false
+            });
+        });
+</script>
+
 <div id="fullpage">
-    <div class="section active" id="section0">
-      <div class="scrollable-element">
-          <br>
-          <br>
 
-          <div class="box5">
-            Video here
-					</div>
+    <div class="section " id="section0">
+        <div class="intro">
+          <video id="myVideo" loop muted data-autoplay>
+            <source src="/FINALgroopvideo.mp4" type="video/mp4">
+          </video>
+        Who are we?
 
-          <div class="box6">
-            <h2 >Who are we?</h2>
-            <p> Groop is a social media platform designed to increase your in-person interactions. </p>
-            <p> Be Social. Meet new friends. Create a groop! </p>
-          </div>
-
-
-          <div class="box7">
-          </div>
-
+				<p> Groop is a social media platform designed to increase your in-person interactions. </p>
+				<p> Be Social. Meet new friends. Create a groop! </p>
+        </div>
     </div>
-  </div>
+
+    <div class="section" id="section1">
+      <div class="intro">
+          <h1>Just use </h1>
+          <p>autoScrolling:false</p>
+      </div>
+    </div>
+
+    <div class="section" id="section2">
+        <div class="intro">
+            <h1>Just use </h1>
+            <p>autoScrolling:false</p>
+        </div>
+    </div>
 </div>
