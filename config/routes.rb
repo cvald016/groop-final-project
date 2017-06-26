@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'static_pages/home'
-  get 'static_pages/help'
-
-
   resources :sessions, only: [:create, :destroy]
   resources :user_events
   resources :events do
