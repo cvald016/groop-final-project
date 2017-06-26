@@ -14,25 +14,25 @@
   <br>
   <div class="field">
     <strong><h5><%= form.label :title %></h5></strong>
-    <%= form.text_field :title, :class => 'input' %>
+    <%= form.text_field :title, :class => 'input form-control' %>
   </div>
 
   <br>
   <div class="field">
     <strong><h5><%= form.label :date %></h5></strong>
-    <%= form.datetime_local_field :date, :value => "#{@current_date}", :class => 'input' %><i class="fa fa-calendar" aria-hidden="true"></i>
+    <%= form.datetime_local_field :date, :value => "#{@current_date}", :class => 'input form-control' %>
   </div>
 
   <br>
   <div class="field">
     <strong><h5><%= form.label :location %></h5></strong>
-    <%= form.text_field :location, :class => 'input' %><i class="fa fa-map-marker" aria-hidden="true"></i>
+    <%= form.text_field :location, :class => 'input form-control' %>
   </div>
 
   <br>
   <div class="field input">
     <strong><h5><%= form.label :description %></h5></strong>
-    <%= form.text_area :description, :class => 'input'  %>
+    <%= form.text_area :description, :class => 'input form-control'  %>
   </div>
 
   <br>

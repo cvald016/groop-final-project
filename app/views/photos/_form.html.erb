@@ -2,12 +2,12 @@
  <%= form_with(model: [@event, photo], local: true, html: { multipart: true }) do |f| %>
 
     <strong><h5><%= f.label :name %></h5></strong>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => 'input form-control' %>
     <br>
     <br>
 
     <strong><h5><%= f.label :attachment %></h5></strong>
-    <%= f.file_field :attachment %>
+    <%= f.file_field :attachment, :class => 'input form-control' %>
     <br>
     <%= f.hidden_field :event_id %>
 

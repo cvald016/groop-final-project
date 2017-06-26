@@ -110,8 +110,12 @@ h1{
   font-size: 16px;
 }
 
-.evt-form .input{
-  min-width: 238px;
+// .evt-form .input{
+//   min-width: 150px;
+// }
+
+.form-control{
+  width: 85%;
 }
 
 // apply styles to HTML elements
