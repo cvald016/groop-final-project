@@ -11,28 +11,32 @@
     </div>
   <% end %>
 
+  <br>
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <strong><h5><%= form.label :title %></h5></strong>
+    <%= form.text_field :title, :class => 'input' %>
   </div>
 
+  <br>
   <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_local_field :date, :value => "#{@current_date}" %>
-
-
-  </div>
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location %>
+    <strong><h5><%= form.label :date %></h5></strong>
+    <%= form.datetime_local_field :date, :value => "#{@current_date}", :class => 'input' %><i class="fa fa-calendar" aria-hidden="true"></i>
   </div>
 
+  <br>
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description  %>
+    <strong><h5><%= form.label :location %></h5></strong>
+    <%= form.text_field :location, :class => 'input' %><i class="fa fa-map-marker" aria-hidden="true"></i>
   </div>
 
+  <br>
+  <div class="field input">
+    <strong><h5><%= form.label :description %></h5></strong>
+    <%= form.text_area :description, :class => 'input'  %>
+  </div>
+
+  <br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Submit', :class => 'btn btn-primary btn' %>
   </div>
 <% end %>
